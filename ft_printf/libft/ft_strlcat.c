@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_countdec.c                                      :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgalata <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 16:39:05 by rgalata           #+#    #+#             */
-/*   Updated: 2022/10/26 16:40:22 by rgalata          ###   ########.fr       */
+/*   Created: 2022/10/04 17:05:48 by rgalata           #+#    #+#             */
+/*   Updated: 2022/10/04 17:05:50 by rgalata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_countdec(int n)
-{	
-	int			i;
-	long int	g;
+#include "libft.h"
 
-	g = n;
-	i = 0;
-	if (g == 0)
-		return (1);
-	if (g < 0)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
+{
+	size_t	i;
+	size_t	dlen;
+
+	dlen = 0;
+	while (dest[dlen] != '\0' && dlen < size)
+		dlen++;
+	i = dlen;
+	while (src[dlen - i] && dlen + 1 < size)
 	{
-		g *= -1;
-		i = 1;
+		dest[dlen] = src[dlen - i];
+		dlen++;
 	}
-	while (g > 0)
-	{
-		i++;
-		g = g / 10;
-	}
-	return (i);
+	if (i < size)
+		dest[dlen] = '\0';
+	return (i + ft_strlen(src));
 }

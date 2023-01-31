@@ -6,7 +6,7 @@
 #    By: rgalata <rgalata@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 15:17:44 by rgalata           #+#    #+#              #
-#    Updated: 2023/01/30 15:17:46 by rgalata          ###   ########.fr        #
+#    Updated: 2023/01/31 18:54:06 by rgalata          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,21 @@ SRC_SERVER = $(SERVER)
 
 SRC_CLIENT = $(CLIENT)
 
-OBJ_SERVER = $(SRC    //ft_printf("\n");
+OBJ_SERVER = $(SRC_SERVER:.c=.o)
+
+OBJ_CLIENT = $(SRC_CLIENT:.c=.o)
+
+GREEN = \033[0;32m
+YELLOW = \033[0;33m
+PURPLE = \033[0;35m
+NO_COLOR = \033[0m
+
+all: $(NAME)
+
+%.o: %.c
+	$(GCC) $(FLAGS) $< -o $@ -I ft_printf/ft_printf.h ft_printf/libftprintf.a
+
+$(NAME):  server client
 
 server: make $(OBJ_SERVER)
 	$(GCC) $(FLAGS) $(SRC_SERVER) -o $(NAME_SERVER)  ft_printf/libftprintf.a
@@ -36,7 +50,7 @@ server: make $(OBJ_SERVER)
 	
 client: make $(OBJ_CLIENT)
 	$(GCC) $(FLAGS) $(SRC_CLIENT) -o $(NAME_CLIENT) ft_printf/libftprintf.a
-	@echo "$(GREEN)server compilato con successo $(NO_COLOR)"
+	@echo "$(GREEN)client compilato con successo $(NO_COLOR)"
 clean:
 	rm -rf $(OBJ_CLIENT) $(OBJ_SERVER)
 	make -C ft_printf clean

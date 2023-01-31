@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_countdec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgalata <rgalata@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rgalata <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 15:17:56 by rgalata           #+#    #+#             */
-/*   Updated: 2023/01/31 18:49:41 by rgalata          ###   ########.fr       */
+/*   Created: 2022/10/26 16:36:15 by rgalata           #+#    #+#             */
+/*   Updated: 2022/10/26 16:36:17 by rgalata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "ft_printf.h"
 
-# include <signal.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "ft_printf/ft_printf.h"
+int	ft_countuns(unsigned int n)
+{	
+	unsigned long int	g;
+	int					i;
 
-#endif
+	g = n;
+	i = 0;
+	if (g == 0)
+		return (1);
+	while (n > 0)
+	{
+		i++;
+		n = n / 10;
+	}
+	return (i);
+}

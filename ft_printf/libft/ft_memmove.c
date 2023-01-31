@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_countdec.c                                      :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgalata <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 16:39:05 by rgalata           #+#    #+#             */
-/*   Updated: 2022/10/26 16:40:22 by rgalata          ###   ########.fr       */
+/*   Created: 2022/10/04 12:19:12 by rgalata           #+#    #+#             */
+/*   Updated: 2022/10/04 12:19:24 by rgalata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_countdec(int n)
-{	
-	int			i;
-	long int	g;
+#include "libft.h"
 
-	g = n;
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	char	*s1;
+	char	*d1;
+	size_t	i;
+
+	s1 = (char *)src;
+	d1 = (char *)dst;
 	i = 0;
-	if (g == 0)
-		return (1);
-	if (g < 0)
+	if (d1 > s1)
+		while (len-- > 0)
+			d1[len] = s1[len];
+	else
 	{
-		g *= -1;
-		i = 1;
+		while (i < len)
+		{
+			d1[i] = s1[i];
+			i++;
+		}
 	}
-	while (g > 0)
-	{
-		i++;
-		g = g / 10;
-	}
-	return (i);
+	return (dst);
 }

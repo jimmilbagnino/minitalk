@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_countdec.c                                      :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgalata <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 16:39:05 by rgalata           #+#    #+#             */
-/*   Updated: 2022/10/26 16:40:22 by rgalata          ###   ########.fr       */
+/*   Created: 2022/10/04 21:12:01 by rgalata           #+#    #+#             */
+/*   Updated: 2022/10/04 21:12:08 by rgalata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_countdec(int n)
-{	
-	int			i;
-	long int	g;
+#include "libft.h"
 
-	g = n;
+int	ft_atoi(const char *nptr)
+{
+	int	segno;
+	int	i;
+	int	num;
+
+	segno = 1;
 	i = 0;
-	if (g == 0)
-		return (1);
-	if (g < 0)
-	{
-		g *= -1;
-		i = 1;
-	}
-	while (g > 0)
-	{
+	num = 0;
+	while (nptr[i] == ' ' || nptr[i] == '\n' || nptr[i] == '\t'
+		|| nptr[i] == '\v' || nptr[i] == '\f' || nptr[i] == '\r')
 		i++;
-		g = g / 10;
+	if (nptr[i] == '-' || nptr[i] == '+')
+	{
+		if (nptr[i] == '-')
+			segno *= -1;
+		i++;
 	}
-	return (i);
+	while (nptr[i] >= 48 && nptr[i] <= 57)
+	{
+		num = num * 10 + (nptr[i] - 48);
+		i++;
+	}
+	return (num * segno);
 }

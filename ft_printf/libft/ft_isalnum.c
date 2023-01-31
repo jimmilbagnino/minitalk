@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgalata <rgalata@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rgalata <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 15:17:56 by rgalata           #+#    #+#             */
-/*   Updated: 2023/01/31 18:49:41 by rgalata          ###   ########.fr       */
+/*   Created: 2022/10/04 11:30:33 by rgalata           #+#    #+#             */
+/*   Updated: 2022/10/04 11:30:36 by rgalata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include <signal.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "ft_printf/ft_printf.h"
-
-#endif
+int	ft_isalnum(int c)
+{
+	if (((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+		|| (c >= '0' && c <= '9'))
+		return (1);
+	return (0);
+}

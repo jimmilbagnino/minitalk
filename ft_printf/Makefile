@@ -3,44 +3,48 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: btani <marvin@42.fr>                       +#+  +:+       +#+         #
+#    By: rgalata <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/26 17:40:53 by btani             #+#    #+#              #
-#    Updated: 2022/10/26 17:51:59 by btani            ###   ########.fr        #
+#    Created: 2022/10/26 15:57:59 by rgalata           #+#    #+#              #
+#    Updated: 2022/10/26 15:58:02 by rgalata          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME	=	libftprintf.a
+
+SRCS	=	ft_countdec.c ft_print_pointer.c ft_putnbr_fd.c\
+	ft_countuns.c ft_print_str.c ft_putstr_fd.c ft_print_char.c\
+	ft_print_hex.c ft_print_unsigned_int.c ft_printf.c\
+	ft_print_int.c ft_putchar_fd.c ft_counthex.c ft_putunsnbr.c
+
+OBJS	=	${SRCS:.c=.o}
+
 AR = ar rcs
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra
 
-SRCS = ft_countdec.c ft_printunsnbr.c ft_countdec_uns.c\
-	ft_printhexa1.c ft_printvoidptr.c ft_counthexa.c\
-	ft_printchar.c ft_printnbr.c ft_printhexa.c\
-	ft_printf.c ft_printstr.c ft_putnbr_uns_fd.c
+CC		=	gcc
 
-OBJ = $(SRCS:.c=.o)
+RM		=	rm -f
 
-all: $(NAME)
+CFLAGS	=	-Wall -Wextra -Werror
 
-$(NAME): $(OBJ)
-	$(MAKE) -C ./Libft
-	cp Libft/libft.a $(NAME)
-	$(AR) $(NAME) $(OBJ)
+.c.o:
+		${CC} ${CFLAGS} -g -c $< -o ${<:.c=.o}
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c -I. $< -o $@
+$(NAME): $(OBJS)
+	$(MAKE) -C ./libft
+	cp libft/libft.a $(NAME)
+	$(AR) $(NAME) $(OBJS)
+
+all:	${NAME}
 
 clean:
-	$(MAKE) clean -C ./Libft
-	rm -f $(OBJ)
+	$(MAKE) clean -C ./libft
+	rm -f $(OBJS)
 
 fclean: clean
-	$(MAKE) fclean -C ./Libft
+	$(MAKE) fclean -C ./libft
 	rm -f $(NAME)
 
-re: fclean all
+re:		fclean all
 
 .PHONY: all clean fclean re
-

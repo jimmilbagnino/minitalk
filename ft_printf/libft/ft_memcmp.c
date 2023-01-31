@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_countdec.c                                      :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgalata <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 16:39:05 by rgalata           #+#    #+#             */
-/*   Updated: 2022/10/26 16:40:22 by rgalata          ###   ########.fr       */
+/*   Created: 2022/10/05 14:19:40 by rgalata           #+#    #+#             */
+/*   Updated: 2022/10/05 14:21:40 by rgalata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_countdec(int n)
-{	
-	int			i;
-	long int	g;
+#include "libft.h"
 
-	g = n;
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	unsigned const char	*st1;
+	size_t				i;
+	unsigned const char	*st2;
+
+	st1 = s1;
+	st2 = s2;
 	i = 0;
-	if (g == 0)
-		return (1);
-	if (g < 0)
-	{
-		g *= -1;
-		i = 1;
-	}
-	while (g > 0)
+	while (i < n - 1 && st1[i] == st2[i])
 	{
 		i++;
-		g = g / 10;
 	}
-	return (i);
+	if ((st1[i] == '\0' && st2[i] == '\0') || n == 0)
+		return (0);
+	return (st1[i] - st2[i]);
 }

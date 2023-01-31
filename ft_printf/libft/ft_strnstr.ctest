@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_countdec.c                                      :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgalata <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 16:39:05 by rgalata           #+#    #+#             */
-/*   Updated: 2022/10/26 16:40:22 by rgalata          ###   ########.fr       */
+/*   Created: 2022/10/05 14:54:00 by rgalata           #+#    #+#             */
+/*   Updated: 2022/10/05 14:54:03 by rgalata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_countdec(int n)
-{	
-	int			i;
-	long int	g;
-
-	g = n;
+char 	*ft_strnstr(const char *big, const char *little, size_t len)
+{
+	int	i;
+	int 	j;
+	
 	i = 0;
-	if (g == 0)
-		return (1);
-	if (g < 0)
-	{
-		g *= -1;
-		i = 1;
-	}
-	while (g > 0)
+	j = 0;
+	while (big[i] != little[j] && big[i] != '\0' 
+			&& ft_memcmp(little[i], big[i], len) == 0)
 	{
 		i++;
-		g = g / 10;
-	}
-	return (i);
+		return (&big[i]);
+	}		
 }

@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_countdec.c                                      :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgalata <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 16:39:05 by rgalata           #+#    #+#             */
-/*   Updated: 2022/10/26 16:40:22 by rgalata          ###   ########.fr       */
+/*   Created: 2022/10/04 20:55:19 by rgalata           #+#    #+#             */
+/*   Updated: 2022/10/04 20:55:21 by rgalata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_countdec(int n)
-{	
-	int			i;
-	long int	g;
+#include "libft.h"
 
-	g = n;
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t	i;
+
 	i = 0;
-	if (g == 0)
-		return (1);
-	if (g < 0)
+	if (n == 0)
+		return (0);
+	while ((s1[i] != '\0' || s2[i] != '\0') && i < n)
 	{
-		g *= -1;
-		i = 1;
-	}
-	while (g > 0)
-	{
+		if (s1[i] != s2[i])
+			return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
 		i++;
-		g = g / 10;
 	}
-	return (i);
+	return (0);
 }

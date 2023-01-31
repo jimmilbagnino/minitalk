@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_countdec.c                                      :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgalata <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 16:39:05 by rgalata           #+#    #+#             */
-/*   Updated: 2022/10/26 16:40:22 by rgalata          ###   ########.fr       */
+/*   Created: 2022/10/07 11:57:16 by rgalata           #+#    #+#             */
+/*   Updated: 2022/10/07 11:58:17 by rgalata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	ft_countdec(int n)
-{	
-	int			i;
-	long int	g;
+#include "libft.h"
 
-	g = n;
-	i = 0;
-	if (g == 0)
-		return (1);
-	if (g < 0)
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*ar;
+
+	if (size == 0 || nmemb == 0)
+		ar = malloc(1);
+	else
 	{
-		g *= -1;
-		i = 1;
+		ar = malloc(nmemb * size);
+		if (nmemb > SIZE_MAX / size || !ar)
+			return (NULL);
+		ft_memset(ar, 0, nmemb * size);
 	}
-	while (g > 0)
-	{
-		i++;
-		g = g / 10;
-	}
-	return (i);
+	return (ar);
 }

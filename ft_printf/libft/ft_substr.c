@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_countdec.c                                      :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgalata <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 16:39:05 by rgalata           #+#    #+#             */
-/*   Updated: 2022/10/26 16:40:22 by rgalata          ###   ########.fr       */
+/*   Created: 2022/10/07 14:56:52 by rgalata           #+#    #+#             */
+/*   Updated: 2022/10/07 14:56:55 by rgalata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_countdec(int n)
-{	
-	int			i;
-	long int	g;
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*substr;
+	size_t	i;
 
-	g = n;
 	i = 0;
-	if (g == 0)
-		return (1);
-	if (g < 0)
+	if (start > ft_strlen(s))
+		len = 0;
+	if (len > (ft_strlen(s) - start))
+		len = ft_strlen(s) - start;
+	substr = (char *)malloc(sizeof(char) * (len + 1));
+	if (!substr && !s)
+		return (NULL);
+	while (s[start] != '\0' && i < len)
 	{
-		g *= -1;
-		i = 1;
+		substr[i++] = s[start++];
 	}
-	while (g > 0)
-	{
-		i++;
-		g = g / 10;
-	}
-	return (i);
+	substr[i] = '\0';
+	return (substr);
 }
